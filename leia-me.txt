@@ -7,3 +7,5 @@ Como iniciar o projeto:
 
 - Execute a API com "python api.py"
 - Execute a interface "python interface.py"
+
+Obs: o arquivo para criar o banco está incluso no projeto "criacao db.js"
