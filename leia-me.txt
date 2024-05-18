@@ -1,0 +1,9 @@
+Como iniciar o projeto:
+
+- Instale as seguintes dependencias:
+* pip install flask pymongo bson
+* pip install flask pymongo
+* pip install requests
+
+- Execute a API com "python api.py"
+- Execute a interface "python interface.py"
