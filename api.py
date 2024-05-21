@@ -81,21 +81,13 @@ def retornar_funcionario_com_ativos(cpf):
 
     # Removendo o campo '_id' dos documentos, pois da o erro: "TypeError: Object of type ObjectId is not JSON serializable"
     notebook_ = notebook.find_one({'cpf': cpf}, {'_id': False})
-
     monitor_ = list(monitor.find({'cpf': cpf}), {'_id': False})
-
     teclado_ = teclado.find_one({'cpf': cpf}, {'_id': False})
-
     mouse_ = mouse.find_one({'cpf': cpf}, {'_id': False})
-
     desktop_ = desktop.find_one({'cpf': cpf}, {'_id': False})
-
     acessorios_ = acessorios.find_one({'cpf': cpf}), {'_id': False}
-
     nobreak_ = nobreak.find_one({'cpf': cpf}, {'_id': False})
-
     headset_ = headset.find_one({'cpf': cpf}, {'_id': False})
-
     celular_ = celular.find_one({'cpf': cpf}, {'_id': False})
 
     # Montando o retorno com o funcionário e seus ativos
