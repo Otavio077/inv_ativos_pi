@@ -6,7 +6,6 @@ Como iniciar o projeto:
 * pip install bson
 * pip install requests
 
+- Execute o script "ciação db.js" no NoSQLBooster
 - Execute a API com "python api.py"
 - Execute a interface "python interface.py"
-
-Obs: o arquivo para criar o banco está incluso no projeto "criacao db.js"

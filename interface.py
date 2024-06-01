@@ -402,3 +402,6 @@ while True:
         break
     else:
         print("Opção inválida. Tente novamente.")
+
+    print("Aperte enter para continuar...")
+    pause = input()
