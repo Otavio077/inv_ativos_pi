@@ -76,16 +76,16 @@ def retornar_funcionario_com_ativos(cpf):
     if not funcionario_:
         return jsonify({'message': 'Funcionário não encontrado'}), 404
 
-    # Removendo o campo '_id' dos documentos, pois da o erro: "TypeError: Object of type ObjectId is not JSON serializable"
-    notebook_ = notebook.find_one({'cpf': cpf}, {'_id': False})
-    monitor_ = list(monitor.find({'cpf': cpf}), {'_id': False})
-    teclado_ = teclado.find_one({'cpf': cpf}, {'_id': False})
-    mouse_ = mouse.find_one({'cpf': cpf}, {'_id': False})
-    desktop_ = desktop.find_one({'cpf': cpf}, {'_id': False})
-    acessorios_ = acessorios.find_one({'cpf': cpf}), {'_id': False}
-    nobreak_ = nobreak.find_one({'cpf': cpf}, {'_id': False})
-    headset_ = headset.find_one({'cpf': cpf}, {'_id': False})
-    celular_ = celular.find_one({'cpf': cpf}, {'_id': False})
+    # Removendo o campo '_id' dos documentos, pois dá o erro: "TypeError: Object of type ObjectId is not JSON serializable"
+    notebook_ = notebook.find_one({'cpf': cpf}, {'_id': False}) or {}
+    monitor_ = list(monitor.find({'cpf': cpf}, {'_id': False})) or []
+    teclado_ = teclado.find_one({'cpf': cpf}, {'_id': False}) or {}
+    mouse_ = mouse.find_one({'cpf': cpf}, {'_id': False}) or {}
+    desktop_ = desktop.find_one({'cpf': cpf}, {'_id': False}) or {}
+    acessorios_ = acessorios.find_one({'cpf': cpf}, {'_id': False}) or {}
+    nobreak_ = nobreak.find_one({'cpf': cpf}, {'_id': False}) or {}
+    headset_ = headset.find_one({'cpf': cpf}, {'_id': False}) or {}
+    celular_ = celular.find_one({'cpf': cpf}, {'_id': False}) or {}
 
     # Montando o retorno com o funcionário e seus ativos
     retorno = {
@@ -102,9 +102,6 @@ def retornar_funcionario_com_ativos(cpf):
     }
 
     return jsonify(retorno), 200
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 #
 # Notebook
@@ -670,7 +667,7 @@ def atualizar_acessorios(cpf):
 
     return jsonify({'message': 'Acessórios atualizados com sucesso'}), 200
 
-# Limpar as informações do ativo acessórios
+# Limpar as informações do ativo acessórios (referência = cpf)
 @app.route('/acessorios/<cpf>', methods=['DELETE'])
 def excluir_acessorios(cpf):
     result = acessorios.delete_one({'cpf': cpf})
@@ -678,8 +675,6 @@ def excluir_acessorios(cpf):
         return jsonify({'message': 'Funcionário não possui acessórios'}), 404
 
     return jsonify({'message': 'Acessórios excluídos com sucesso'}), 200
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
